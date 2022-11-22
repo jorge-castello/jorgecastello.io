@@ -10,7 +10,7 @@ import {
   GitHubIcon,
   LinkedInIcon,
 } from '@/components/SocialIcons'
-import portraitImage from '@/images/portrait.jpg'
+import portraitImage from '@/images/portrait.png'
 import { GITHUB_LINK, INSTAGRAM_LINK, LINKEDIN_LINK, TWITTER_LINK } from '@/constants/social-links'
 
 function SocialLink({ className, href, children, icon: Icon }) {
@@ -62,10 +62,10 @@ export default function About() {
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              I’m Jorge Castello. I live in San Diego, where I ship software and popular content.
+              I'm Jorge Castello from California
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-              <p>
+              {/* <p>
                 TBU
               </p>
               <p>
@@ -76,7 +76,7 @@ export default function About() {
               </p>
               <p>
                 TBU
-              </p>
+              </p> */}
             </div>
           </div>
           <div className="lg:pl-20">

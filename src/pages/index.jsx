@@ -12,11 +12,11 @@ import {
   GitHubIcon,
   LinkedInIcon,
 } from '@/components/SocialIcons'
-import image1 from '@/images/photos/image-1.jpg'
-import image2 from '@/images/photos/image-2.jpg'
-import image3 from '@/images/photos/image-3.jpg'
-import image4 from '@/images/photos/image-4.jpg'
-import image5 from '@/images/photos/image-5.jpg'
+import image1 from '@/images/photos/image-1.png'
+import image2 from '@/images/photos/image-2.png'
+import image3 from '@/images/photos/image-3.png'
+import image4 from '@/images/photos/image-4.png'
+import image5 from '@/images/photos/image-5.png'
 import logoAmazon from '@/images/logos/amazon.webp'
 import logoBaseCap from '@/images/logos/basecap.png'
 import logoHackReactor from '@/images/logos/hack-reactor.png'
@@ -260,20 +260,20 @@ export default function Home({ articles }) {
     <>
       <Head>
         <title>
-          Jorge - Software engineer, founder, and former finance bro
+          Jorge - Software developer, founder, and former finance bro
         </title>
         <meta
           name="description"
-          content="I’m Jorge, a software engineer and entrepreneur based in San Diego. During the day, I work at Amazon on a team that generates $30B+ annual free cash flow. In my free time, I build software products and write articles."
+          content="I’m Jorge, a software developer and entrepreneur based in San Diego. During the day, I work at Amazon on a team that generates $30B+ annual free cash flow. In my free time, I build software products and write articles."
         />
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Software engineer, founder, and former finance bro.
+            Software developer, founder, and former finance bro.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Jorge, a software engineer and entrepreneur based in San Diego. During the day, I work at Amazon in a team that generates $30B+ annual free cash flow. In my free time, I build software products and write articles.
+            I’m Jorge, a software developer and entrepreneur based in San Diego. During the day, I work at Amazon in a team that generates $30B+ annual free cash flow. In my free time, I build software products and write articles.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
@@ -303,7 +303,7 @@ export default function Home({ articles }) {
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
-            {articles.map((article) => (
+            {[].map((article) => (
               <Article key={article.slug} article={article} />
             ))}
           </div>
