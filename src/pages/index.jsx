@@ -265,7 +265,7 @@ export default function Home({ articles }) {
         </title>
         <meta
           name="description"
-          content="I’m Jorge, a software developer and entrepreneur based in San Diego. During the day, I work at Amazon on a team that generates $30B+ annual free cash flow. In my free time, I build software products and write articles."
+          content="I’m Jorge, a software developer and entrepreneur based in San Diego. During the day, I work at Amazon on a team that generates free cash flow. In my free time, I build software products and write articles."
         />
       </Head>
       <Container className="mt-9">
@@ -274,7 +274,7 @@ export default function Home({ articles }) {
             Software developer, founder, & former finance bro.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Jorge, a software developer and entrepreneur based in San Diego. During the day, I work at Amazon in a team that generates $30B+ annual free cash flow. In my free time, I build software products and write articles.
+            I’m Jorge, a software developer and entrepreneur based in San Diego. During the day, I work at Amazon in a team that generates free cash flow. In my free time, I build software products and write articles.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
