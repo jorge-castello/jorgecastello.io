@@ -26,6 +26,7 @@ import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
 import { GITHUB_LINK, INSTAGRAM_LINK, LINKEDIN_LINK, TWITTER_LINK } from '@/constants/social-links'
+import { getResumeUrl } from '@/lib/firebase/storage'
 
 function MailIcon(props) {
   return (
@@ -139,7 +140,7 @@ function Newsletter() {
   )
 }
 
-function Resume() {
+function Resume({resumeUrl}) {
   let resume = [
     {
       company: 'Amazon',
@@ -221,7 +222,7 @@ function Resume() {
           </li>
         ))}
       </ol>
-      <Button href="" variant="secondary" className="group mt-6 w-full" disabled>
+      <Button href={resumeUrl} variant="secondary" className="group mt-6 w-full" target="_blank">
         Download CV
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
@@ -256,7 +257,7 @@ function Photos() {
   )
 }
 
-export default function Home({ articles }) {
+export default function Home({ articles, resumeUrl }) {
   return (
     <>
       <Head>
@@ -310,7 +311,7 @@ export default function Home({ articles }) {
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Newsletter />
-            <Resume />
+            <Resume resumeUrl={resumeUrl} />
           </div>
         </div>
       </Container>
@@ -323,11 +324,13 @@ export async function getStaticProps() {
     await generateRssFeed()
   }
 
+  const resumeUrl = await getResumeUrl();
   return {
     props: {
       articles: (await getAllArticles())
         .slice(0, 4)
         .map(({ component, ...meta }) => meta),
+        resumeUrl
     },
   }
 }
