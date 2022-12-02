@@ -25,10 +25,7 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-, "src/pages/index.jsx"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "src/**/*.ts",
+    "src/**/*.tsx"],
+  "exclude": ["node_modules"]
 }
