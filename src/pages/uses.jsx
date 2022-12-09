@@ -57,7 +57,7 @@ export default function Uses() {
           </ToolsSection>
           <ToolsSection title="Software">
           <Tool title="Linear">
-            Check out <Link href="https://linear.app/" target="_blank" className='text-indigo-500 font-bold hover:text-indigo-700 hover:underline'>Linear</Link> 
+            Check out <Link href="https://linear.app/" target="_blank" className='text-teal-500 font-bold hover:text-teal-700'>Linear</Link> 
             {' '}and you'll see why I use their project management software for every project
             </Tool>
             <Tool title="Spotify">
