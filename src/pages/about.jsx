@@ -65,18 +65,15 @@ export default function About() {
               I'm Jorge Castello from California
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-              {/* <p>
-                TBU
+              <p>
+              My name is Jorge Castello and I am a software engineer at Amazon. I received my Bachelor's degree in Finance from the University of Southern California, and have been working in the tech industry for the past 5 years. My career has been split between two technical disciplines: finance and software engineering. As a finance analyst, I contributed to projects such as the Uber IPO and numerous M&A transactions. My experience in finance has given me a unique perspective on the software engineering field, allowing me to bring a financial mindset to my work as a software engineer.
               </p>
               <p>
-                TBU
+              At Amazon, I have worked on the fintech team, where I have contributed to the development of innovative financial products. Prior to Amazon, I worked as a software engineer at BaseCap Analytics, where I developed and maintained financial applications.
               </p>
               <p>
-                TBU
+              In my free time, I enjoy hiking and traveling. My goal is to continue to develop cutting-edge technology and make a positive impact on the world.
               </p>
-              <p>
-                TBU
-              </p> */}
             </div>
           </div>
           <div className="lg:pl-20">
