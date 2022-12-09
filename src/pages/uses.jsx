@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
+import Link from 'next/link'
 
 function ToolsSection({ children, ...props }) {
   return (
@@ -32,26 +33,40 @@ export default function Uses() {
         <title>Uses - Jorge Castello</title>
         <meta
           name="description"
-          content="Software I use, gadgets I love, and other things I recommend."
+          content="The tools and gadgets I rely on, plus other favorites."
         />
       </Head>
       <SimpleLayout
-        title="Software I use, gadgets I love, and other things I recommend."
-        intro="I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I’m being productive when I’m really just procrastinating. Here’s a big list of all of my favorite stuff."
+        title="The tools and gadgets I rely on, plus other favorites."
+        intro="I am often asked about the tools and products I use to build software, stay productive, or distract myself from procrastination. Here is a list of some of my favorites that I hope might be helpful to others."
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
             <Tool title="16” MacBook Pro, M1 Max, 32GB RAM (2021)">
-              I was using an Intel-based 16” MacBook Pro prior to this and the
-              difference is night and day. I’ve never heard the fans turn on a
-              single time, even under the incredibly heavy loads I put it
-              through.
+            I absolutely love my M1 MacBook Pro! I used to have a Mac Mini 2018, but the difference between the two is like night and day. 
+            With the M1, I've never once heard the fans turn on, even when I'm using it for heavy workloads. 
+            Plus, the MacBook Pro is so much more portable than the Mac Mini, which makes it perfect for working on the go.
+            </Tool>
+            <Tool title="AirPods Max">
+            The AirPods Max are my favorite headphones because they are incredibly comfortable, have excellent sound quality, and are extremely convenient to use. 
+            I love the noise-canceling feature, which makes it easy to focus on my music or podcasts without any distractions.
+            </Tool>
+            <Tool title="iPhone 14 Pro Max">
+            The iPhone 14 Pro Max is my favorite phone because it has an impressive camera, a long-lasting battery, and a beautiful design. 
             </Tool>
           </ToolsSection>
-          {/* <ToolsSection title="Development tools">
+          <ToolsSection title="Software">
+          <Tool title="Linear">
+            Check out <Link href="https://linear.app/" target="_blank" className='text-indigo-500 font-bold hover:text-indigo-700 hover:underline'>Linear</Link> 
+            {' '}and you'll see why I use their project management software for every project
+            </Tool>
+            <Tool title="Spotify">
+            I love using Spotify while working because it helps me stay focused and motivated.
+            </Tool>
+            <Tool title="Visual Studio Code">
+            VSCode is a fantastic code editor that I love using for all my coding projects
+            </Tool>
           </ToolsSection>
-          <ToolsSection title="Productivity">
-          </ToolsSection> */}
         </div>
       </SimpleLayout>
     </>
