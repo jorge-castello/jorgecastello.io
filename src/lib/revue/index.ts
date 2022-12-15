@@ -1,7 +1,14 @@
-const NEWSLETTER_API_ENDPOINT = 'https://www.getrevue.co/api'
-const ADD_SUBSCRIBER_ENDPOINT = `${NEWSLETTER_API_ENDPOINT}/v2/subscribers`
+import { HttpRequests } from '@/constants/http'
+
+// End point for website that actually manages the API
+const REVUE_API_ENDPOINT = 'https://www.getrevue.co/api'
+const REVUE_ADD_SUBSCRIBER_ENDPOINT = `${REVUE_API_ENDPOINT}/v2/subscribers`
 
 const API_TOKEN = process.env.REVUE_NEWSLETTER_API_KEY
+
+export interface AddSubscriberInput {
+  email: string
+}
 
 export interface AddSubscriberResult {
   id: number
@@ -13,11 +20,12 @@ export interface AddSubscriberResult {
   error?: { email?: string[] }
 }
 
-export async function addSubscriber(
-  email: string
-): Promise<AddSubscriberResult> {
-  const addSubscriber = await fetch(ADD_SUBSCRIBER_ENDPOINT, {
-    method: 'POST',
+// This method is intended for use in the backend /api calls
+export async function addSubscriber({
+  email,
+}: AddSubscriberInput): Promise<AddSubscriberResult> {
+  const addSubscriber = await fetch(REVUE_ADD_SUBSCRIBER_ENDPOINT, {
+    method: HttpRequests.POST,
     headers: {
       Authorization: `Token ${API_TOKEN}`,
       'Content-Type': 'application/json',
