@@ -1,9 +1,11 @@
 import { HttpRequests, HttpStatus } from '@/constants/http'
-import * as revue from '@/lib/revue'
+import * as newsletter from '@/lib/newsletter/addSubscriber'
 import { InvalidInputError } from '@/models/error'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 // API endpoint to add subscribers to newsletter
+const ADD_SUBSCRIBER_API_ENDPOINT = '/api/newsletter'
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -17,22 +19,14 @@ export default async function handler(
   try {
     const { email } = parseAndValidateRequest(req)
 
-    const addSubscriberResult: revue.AddSubscriberResult =
-      await revue.addSubscriber(email)
-
+    await newsletter.addSubscriber({ email })
     return res.status(HttpStatus.OK).json({
-      id: addSubscriberResult.id,
-      email: addSubscriberResult.email,
       success: true,
     })
   } catch (ex) {
-    if (
-      ex instanceof InvalidInputError ||
-      ex instanceof revue.AlreadySubscribedError
-    ) {
+    if (ex instanceof InvalidInputError) {
       return res.status(HttpStatus.BAD_REQUEST).json({ error: ex.message })
     }
-
     return res.status(HttpStatus.SERVER_FAULT).send({ error: ex.message })
   }
 }
@@ -51,4 +45,17 @@ function parseAndValidateRequest(req: NextApiRequest): {
   }
 
   return { email }
+}
+
+// This method is intended for use in the front-end POST requests
+export async function submitNewsletterForm(
+  input: newsletter.AddSubscriberInput
+) {
+  return fetch(ADD_SUBSCRIBER_API_ENDPOINT, {
+    method: HttpRequests.POST,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(input),
+  })
 }

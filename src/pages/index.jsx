@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Head from 'next/head'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { useRouter } from 'next/router'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
@@ -27,6 +28,8 @@ import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
 import { GITHUB_LINK, INSTAGRAM_LINK, LINKEDIN_LINK, TWITTER_LINK } from '@/constants/social-links'
 import { getResumeUrl } from '@/lib/firebase/storage'
+import { useState } from 'react'
+import { submitNewsletterForm } from './api/newsletter'
 
 function MailIcon(props) {
   return (
@@ -111,9 +114,29 @@ function SocialLink({ icon: Icon, ...props }) {
 }
 
 function Newsletter() {
+  const router = useRouter()
+  
+  const [email, setEmail] = useState("")
+  const [error, setError] = useState("") 
+
+  const handleNewsletterSignup = async (e) => {
+    e.preventDefault()
+    
+    const result = await submitNewsletterForm({email})
+    const {error} = await result.json()
+
+    if (error) {
+      setError("You could not be subscribed at this time. Please try again later.")
+
+      await setTimeout(() => setError(""), 10000)
+    } else {
+      router.push("/thank-you")
+    }
+  } 
+  
   return (
     <form
-      action="/thank-you"
+      onSubmit={(e) => handleNewsletterSignup(e)}
       className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
     >
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
@@ -130,12 +153,14 @@ function Newsletter() {
           aria-label="Email address"
           required
           className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm"
-          disabled
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <Button type="submit" className="ml-4 flex-none" disabled>
+        <Button type="submit" className="ml-4 flex-none">
           Join
         </Button>
       </div>
+      {error && <div className="mt-6 flex text-white text-sm px-2 py-1 dark:bg-red-900 bg-red-500 rounded-md">{error}</div>}
     </form>
   )
 }
