@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Head from 'next/head'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { useRouter } from 'next/router'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
@@ -113,11 +114,24 @@ function SocialLink({ icon: Icon, ...props }) {
 }
 
 function Newsletter() {
-  const [email, setEmail] = useState("")
+  const router = useRouter()
   
-  const handleNewsletterSignup = (e) => {
+  const [email, setEmail] = useState("")
+  const [error, setError] = useState("") 
+
+  const handleNewsletterSignup = async (e) => {
     e.preventDefault()
-    submitNewsletterForm({email})
+    
+    const result = await submitNewsletterForm({email})
+    const {error} = await result.json()
+
+    if (error) {
+      setError("You could not be subscribed at this time. Please try again later.")
+
+      await setTimeout(() => setError(""), 10000)
+    } else {
+      router.push("/thank-you")
+    }
   } 
   
   return (
@@ -146,6 +160,7 @@ function Newsletter() {
           Join
         </Button>
       </div>
+      {error && <div className="mt-6 flex text-white text-sm px-2 py-1 dark:bg-red-900 bg-red-500 rounded-md">{error}</div>}
     </form>
   )
 }
