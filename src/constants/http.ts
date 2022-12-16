@@ -8,7 +8,8 @@ const HttpRequests = {
 
 const HttpStatus = {
   OK: 200,
-  CREATED: 204,
+  CREATED: 201,
+  NO_CONTENT: 204,
   BAD_REQUEST: 400,
   METHOD_NOT_ALLOWED: 405,
   SERVER_FAULT: 500,

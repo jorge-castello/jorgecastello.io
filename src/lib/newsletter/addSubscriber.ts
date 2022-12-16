@@ -4,7 +4,11 @@ import { HttpRequests, HttpStatus } from '@/constants/http'
 const NEWSLETTER_API_ENDPOINT = 'https://api.sendinblue.com/v3/contacts'
 const API_KEY = process.env.NEWSLETTER_API_KEY
 const NEWSLETTER_LIST_IDS = [3]
-const SUCCESSFUL_STATUS_CODES = [HttpStatus.OK, HttpStatus.CREATED]
+const SUCCESSFUL_STATUS_CODES = [
+  HttpStatus.OK,
+  HttpStatus.CREATED,
+  HttpStatus.NO_CONTENT,
+]
 
 export interface AddSubscriberInput {
   email: string
@@ -27,6 +31,7 @@ export async function addSubscriber({
       listIds: NEWSLETTER_LIST_IDS,
     }),
   })
+  console.log({ subscriberStatus: addSubscriber.status })
 
   if (!SUCCESSFUL_STATUS_CODES.includes(addSubscriber.status)) {
     throw new Error('Something unexpected happened :(')
